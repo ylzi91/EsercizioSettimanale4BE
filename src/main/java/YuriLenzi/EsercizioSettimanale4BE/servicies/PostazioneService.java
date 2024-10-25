@@ -1,6 +1,8 @@
 package YuriLenzi.EsercizioSettimanale4BE.servicies;
 
 import YuriLenzi.EsercizioSettimanale4BE.entities.Postazione;
+import YuriLenzi.EsercizioSettimanale4BE.entities.Utente;
+import YuriLenzi.EsercizioSettimanale4BE.exception.CoseNonTrovateException;
 import YuriLenzi.EsercizioSettimanale4BE.myEnum.TipoPostazione;
 import YuriLenzi.EsercizioSettimanale4BE.repositories.PostazioneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +21,9 @@ public class PostazioneService {
 
     public List<Postazione> filtraPerTipoCitta(TipoPostazione tipoPostazione, String citta){
         return postazioneRepository.filtraperTipoeCitta(tipoPostazione, citta);
+    }
+
+    public Postazione findById(long postazioneId){
+        return postazioneRepository.findById(postazioneId).orElseThrow(() -> new CoseNonTrovateException(postazioneId));
     }
 }

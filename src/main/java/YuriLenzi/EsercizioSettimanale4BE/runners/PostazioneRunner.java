@@ -28,7 +28,15 @@ public class PostazioneRunner implements CommandLineRunner {
 //            postazioneService.salvaPostazione(new Postazione(faker.funnyName().name(), TipoPostazione.SALARIUNIONI, edificioService.tuttiGliEdifici()));
 //        }
 
-        postazioneService.filtraPerTipoCitta(TipoPostazione.SALARIUNIONI, "Samira lido").forEach(System.out::println);
+        postazioneService.filtraPerTipoCitta(TipoPostazione.SALARIUNIONI, "Samira lido").forEach(postazione -> {
+            System.out.println("Nome sala: " + postazione.getDescrizione());
+            System.out.println("Nel/Negli edificio/i: ");
+            postazione.getEdifici().forEach(edificio -> {
+                System.out.println(edificio.getNome());
+                System.out.println("Nella citta di " + edificio.getCitta());
+            });
+            System.out.println("-----------------------------------");
+        });
 
 
     }

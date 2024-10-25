@@ -1,6 +1,7 @@
 package YuriLenzi.EsercizioSettimanale4BE.servicies;
 
 import YuriLenzi.EsercizioSettimanale4BE.entities.Utente;
+import YuriLenzi.EsercizioSettimanale4BE.exception.CoseNonTrovateException;
 import YuriLenzi.EsercizioSettimanale4BE.exception.UtenteGiaPresenteException;
 import YuriLenzi.EsercizioSettimanale4BE.repositories.PostazioneRepository;
 import YuriLenzi.EsercizioSettimanale4BE.repositories.UtenteRepository;
@@ -25,7 +26,9 @@ public class UtenteService {
             utenteRepository.save(newUtente);
             System.out.println("Utente " + newUtente.getNome() + " è stato salvato");
         }
+    }
 
-
+    public Utente findById(String username){
+        return utenteRepository.findById(username).orElseThrow(() -> new CoseNonTrovateException(username));
     }
 }
