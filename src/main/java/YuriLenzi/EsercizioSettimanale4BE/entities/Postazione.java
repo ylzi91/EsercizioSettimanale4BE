@@ -10,7 +10,6 @@ import java.util.List;
 
 @Entity
 @Getter
-@ToString
 public class Postazione {
     @Id
     @GeneratedValue
@@ -59,5 +58,16 @@ public class Postazione {
 
     public void setEdifici(List<Edificio> edifici) {
         this.edifici = edifici;
+    }
+
+    @Override
+    public String toString() {
+        return "Postazione{" +
+                "idPostazione=" + idPostazione +
+                ", descrizione='" + descrizione + '\'' +
+                ", tipoPostazione=" + tipoPostazione +
+                ", numMax=" + numMax +
+                ", edifici=" + edifici.toString() +
+                '}';
     }
 }

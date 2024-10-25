@@ -2,6 +2,7 @@ package YuriLenzi.EsercizioSettimanale4BE.servicies;
 
 import YuriLenzi.EsercizioSettimanale4BE.entities.Utente;
 import YuriLenzi.EsercizioSettimanale4BE.exception.UtenteGiaPresenteException;
+import YuriLenzi.EsercizioSettimanale4BE.repositories.PostazioneRepository;
 import YuriLenzi.EsercizioSettimanale4BE.repositories.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,6 +15,7 @@ public class UtenteService {
     @Autowired
     UtenteRepository utenteRepository;
 
+
     public void salvaUtente(Utente newUtente){
         Optional<Utente> utenteSioNo = utenteRepository.findById(newUtente.getUsername());
         if(utenteSioNo.isPresent()){
@@ -23,6 +25,7 @@ public class UtenteService {
             utenteRepository.save(newUtente);
             System.out.println("Utente " + newUtente.getNome() + " è stato salvato");
         }
+
 
     }
 }
